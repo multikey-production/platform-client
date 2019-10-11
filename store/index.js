@@ -1,12 +1,12 @@
 import Vuex from 'vuex';
-import notification from './common/notification';
-import resource from './resource';
+import common from './common';
+import dictionary from './dictionary';
 
 const store = () => {
   return new Vuex.Store({
     modules: {
-      notification,
-      resource
+      common,
+      dictionary
     }
   })
 }

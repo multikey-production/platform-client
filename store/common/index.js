@@ -24,6 +24,28 @@ export default {
       setTimeout(() => {
         commit('set', closeNotification)
       }, 3000);
+    },
+
+    async nuxtServerInit({
+      commit
+    }, {
+      req
+    }) {
+      let subdomen = req.headers.host.split('.')[0];
+
+      if (subdomen === req.headers.host || Number.isInteger(parseInt(subdomen))) {
+        subdomen = 'ru';
+      }
+
+      await this.dispatch("dictionary/findOne", {
+        params: {
+          filter: {
+            where: {
+              lang: subdomen
+            }
+          }
+        }
+      });
     }
   },
   getters: {

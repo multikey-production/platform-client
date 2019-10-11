@@ -1,4 +1,5 @@
-const pkg = require('./package')
+// const pkg = require('./package')
+require('dotenv').config();
 
 module.exports = {
   mode: 'universal',
@@ -7,7 +8,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: 'Template',
     meta: [{
         charset: 'utf-8'
       },
@@ -18,22 +19,25 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: pkg.description
+        content: 'Template'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: ''
       }
     ],
     link: [{
       rel: 'icon',
       type: 'image/x-icon',
-      href: '/favicon.ico'
+      href: ''
     }]
   },
 
   /*
    ** Customize the progress-bar color
    */
-  loading: {
-    color: '#fff'
-  },
+  loading: '~/components/Loading',
 
   /*
    ** Global CSS
@@ -55,10 +59,27 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     ['@nuxtjs/axios', {
-      credentials: true,
-      baseURL: 'http://localhost:3000'
-    }]
+      credentials: false,
+      baseURL: process.env.NUXT_API_URL
+    }],
+    [
+      '@nuxtjs/robots',
+      {
+        UserAgent: '*',
+        Host: process.env.NUXT_BASE_URL,
+        Disallow: '/',
+        Disallow: '/*',
+        Disallow: '*'
+      }
+    ]
   ],
+
+  env: {
+    basicAuthLogin: process.env.NUXT_BASIC_AUTH_LOGIN,
+    basicAuthPassword: process.env.NUXT_BASIC_AUTH_PASSWORD,
+    apiKeys: process.env.NUXT_X_API_KEYS
+  },
+
   /*
    ** Axios module configuration
    */
@@ -68,7 +89,8 @@ module.exports = {
 
   server: {
     // nuxt.js server options ( can be overrided by environment variables )
-    port: 3002
+    host: process.env.NUXT_BASE_URL,
+    port: process.env.NUXT_PORT
   },
 
   /*
