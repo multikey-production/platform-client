@@ -19,7 +19,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/robots": "^2.4.2",
     "cross-env": "^5.2.0",
+    "dotenv": "^8.1.0",
     "nuxt": "^2.3.4",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",

@@ -52,6 +52,5 @@ export default {
     get(state) {
       return state.notification;
     }
-  },
-  namespaced: true
+  }
 };
