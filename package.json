@@ -1,7 +1,7 @@
 {
   "name": "client_dev",
   "version": "1.0.0",
-  "description": "My super-excellent Nuxt.js project",
+  "description": "Client for platform",
   "author": "supervueman",
   "private": true,
   "scripts": {
